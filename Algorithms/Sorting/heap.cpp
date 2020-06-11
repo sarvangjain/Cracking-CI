@@ -76,11 +76,29 @@ void heapSort(int *arr, int n)
 }
 
 
+int binarySearchRecur(int *arr,int x, int left, int right)
+{
+	if (left <= right){
+		int mid = left + (left+right)/2;
+		if (arr[mid] == x)
+			return mid;
+		else if (arr[mid] > x)
+			return binarySearchRecur(arr,x,left,mid);
+		else
+			return binarySearchRecur(arr,x,mid,right);
+	} else if(left == right){
+		if (arr[left] != x)
+			return -1;
+
+	}
+}
+
 
 int main(){
 
 	int *arr;
 	int n;
+	int x;
 	cout << "Enter number of elements\n";
 	cin >> n;
 	
@@ -115,5 +133,12 @@ int main(){
 		cout << arr[i] << ' ';
 	}
 	cout << '\n';
+	
+	cout << "Enter number to search\n";
+	cin >> x;
+
+	int ind = binarySearchRecur(arr,x,0,n);
+	cout << "The element " << x << "is at: " << ind <<"\n";
+	
 	return 0;
 }
